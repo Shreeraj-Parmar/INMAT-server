@@ -19,10 +19,9 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch(
-      {
-  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+     {
+      headless: true,
+    }
     );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -550,9 +549,8 @@ export const generateOnePDF = async (req, res) => {
 
     const browser = await puppeteer.launch(
       {
-  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+      headless: true,
+    }
     );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -1058,10 +1056,9 @@ export const generateAllPDF = async (req, res) => {
   console.log("Username:", username);
   try {
     const browser = await puppeteer.launch(
-      {
-  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+     {
+      headless: true,
+    }
     );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
