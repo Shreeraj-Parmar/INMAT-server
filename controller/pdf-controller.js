@@ -21,6 +21,7 @@ export const generatePDF = async (req, res) => {
     const browser = await puppeteer.launch(
      {
         dumpio: true,
+        slowMo: 1050, 
     }
     );
     const page = await browser.newPage(
@@ -555,6 +556,7 @@ export const generateOnePDF = async (req, res) => {
     const browser = await puppeteer.launch(
       {
        dumpio: true,
+         slowMo: 1050, 
     }
     );
     const page = await browser.newPage(
@@ -1069,6 +1071,7 @@ export const generateAllPDF = async (req, res) => {
     const browser = await puppeteer.launch(
      {
       dumpio: true,
+        slowMo: 1050, 
     }
     );
     const page = await browser.newPage(
