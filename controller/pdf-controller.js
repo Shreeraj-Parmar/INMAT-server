@@ -18,16 +18,12 @@ export const generatePDF = async (req, res) => {
   } = req.body.invoiceData;
   let { subTotal, discount, classChe } = req.body;
   try {
-    const browser = await puppeteer.launch(
-     {
-             dumpio: true,
-       headless: true,
-     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    }
-    );
-    const page = await browser.newPage(
-       
-    );
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true,
+    });
+    console.log(browser);
+    const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
     // const filePath = path.resolve("note.html");
@@ -551,17 +547,11 @@ export const generateOnePDF = async (req, res) => {
       return acc + parseFloat(item.amount);
     }, 0);
 
-    const browser = await puppeteer.launch(
-      {
-            dumpio: true,
-       headless: true,
-     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    }
-    );
-    const page = await browser.newPage(
-      
-     
-    );
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true,
+    });
+    const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
     // const filePath = path.resolve("note.html");
@@ -1064,16 +1054,11 @@ export const generateAllPDF = async (req, res) => {
   console.log("Invoices:", invoices); // Log the invoices array
   console.log("Username:", username);
   try {
-    const browser = await puppeteer.launch(
-     {
-      dumpio: true,
-       headless: true,
-     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    }
-    );
-    const page = await browser.newPage(
-
-    );
+    const browser = await puppeteer.launch({
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true,
+    });
+    const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
 
