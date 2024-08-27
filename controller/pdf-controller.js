@@ -20,15 +20,13 @@ export const generatePDF = async (req, res) => {
   try {
     const browser = await puppeteer.launch(
      {
-        dumpio: true,
-        slowMo: 1050, 
+             dumpio: true,
+       headless: true,
+     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }
     );
     const page = await browser.newPage(
-       {
-  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+       
     );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
@@ -555,16 +553,14 @@ export const generateOnePDF = async (req, res) => {
 
     const browser = await puppeteer.launch(
       {
-       dumpio: true,
-         slowMo: 1050, 
+            dumpio: true,
+       headless: true,
+     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }
     );
     const page = await browser.newPage(
       
-       {
-  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+     
     );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
@@ -1071,14 +1067,12 @@ export const generateAllPDF = async (req, res) => {
     const browser = await puppeteer.launch(
      {
       dumpio: true,
-        slowMo: 1050, 
+       headless: true,
+     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     }
     );
     const page = await browser.newPage(
-       {
-  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
-  headless: true
-}
+
     );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
