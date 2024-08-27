@@ -19,19 +19,9 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch({
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-        "--disable-accelerated-2d-canvas",
-        "--disable-gpu",
-        "--no-first-run",
-        "--no-zygote",
-        "--single-process", // <- this one doesn't work in Windows
-        "--disable-extensions",
-      ],
-      headless: true,
-    });
+  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+  headless: true,
+});
 
     console.log(browser);
     const page = await browser.newPage();
@@ -558,20 +548,10 @@ export const generateOnePDF = async (req, res) => {
       return acc + parseFloat(item.amount);
     }, 0);
 
-    const browser = await puppeteer.launch({
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-        "--disable-accelerated-2d-canvas",
-        "--disable-gpu",
-        "--no-first-run",
-        "--no-zygote",
-        "--single-process", // <- this one doesn't work in Windows
-        "--disable-extensions",
-      ],
-      headless: true,
-    });
+       const browser = await puppeteer.launch({
+  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+  headless: true,
+});
 
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -1076,20 +1056,10 @@ export const generateAllPDF = async (req, res) => {
   console.log("Invoices:", invoices); // Log the invoices array
   console.log("Username:", username);
   try {
-    const browser = await puppeteer.launch({
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-        "--disable-accelerated-2d-canvas",
-        "--disable-gpu",
-        "--no-first-run",
-        "--no-zygote",
-        "--single-process", // <- this one doesn't work in Windows
-        "--disable-extensions",
-      ],
-      headless: true,
-    });
+       const browser = await puppeteer.launch({
+  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+  headless: true,
+});
 
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
