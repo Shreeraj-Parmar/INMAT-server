@@ -20,7 +20,7 @@ export const generatePDF = async (req, res) => {
   try {
     const browser = await puppeteer.launch(
      {
-      headless: true,
+        dumpio: true,
     }
     );
     const page = await browser.newPage(
@@ -554,7 +554,7 @@ export const generateOnePDF = async (req, res) => {
 
     const browser = await puppeteer.launch(
       {
-      headless: true,
+       dumpio: true,
     }
     );
     const page = await browser.newPage(
@@ -1068,7 +1068,7 @@ export const generateAllPDF = async (req, res) => {
   try {
     const browser = await puppeteer.launch(
      {
-      headless: true,
+      dumpio: true,
     }
     );
     const page = await browser.newPage(
