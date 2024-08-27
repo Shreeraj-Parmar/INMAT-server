@@ -19,9 +19,20 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-zygote",
+        "--single-process", // <- this one doesn't work in Windows
+        "--disable-extensions",
+      ],
       headless: true,
     });
+
     console.log(browser);
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -548,9 +559,20 @@ export const generateOnePDF = async (req, res) => {
     }, 0);
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-zygote",
+        "--single-process", // <- this one doesn't work in Windows
+        "--disable-extensions",
+      ],
       headless: true,
     });
+
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
@@ -1055,9 +1077,20 @@ export const generateAllPDF = async (req, res) => {
   console.log("Username:", username);
   try {
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-zygote",
+        "--single-process", // <- this one doesn't work in Windows
+        "--disable-extensions",
+      ],
       headless: true,
     });
+
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
