@@ -23,7 +23,12 @@ export const generatePDF = async (req, res) => {
       headless: true,
     }
     );
-    const page = await browser.newPage();
+    const page = await browser.newPage(
+       {
+  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
     // const filePath = path.resolve("note.html");
@@ -552,7 +557,13 @@ export const generateOnePDF = async (req, res) => {
       headless: true,
     }
     );
-    const page = await browser.newPage();
+    const page = await browser.newPage(
+      
+       {
+  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
     // const filePath = path.resolve("note.html");
@@ -1060,7 +1071,12 @@ export const generateAllPDF = async (req, res) => {
       headless: true,
     }
     );
-    const page = await browser.newPage();
+    const page = await browser.newPage(
+       {
+  executablePath: '/usr/bin/chromium-browser', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
 
