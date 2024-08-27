@@ -18,7 +18,12 @@ export const generatePDF = async (req, res) => {
   } = req.body.invoiceData;
   let { subTotal, discount, classChe } = req.body;
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+      {
+  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
@@ -543,7 +548,12 @@ export const generateOnePDF = async (req, res) => {
       return acc + parseFloat(item.amount);
     }, 0);
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+      {
+  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
@@ -1047,7 +1057,12 @@ export const generateAllPDF = async (req, res) => {
   console.log("Invoices:", invoices); // Log the invoices array
   console.log("Username:", username);
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+      {
+  executablePath: '/usr/bin/google-chrome', // Adjust this path based on Render.com’s file system
+  headless: true
+}
+    );
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
     const today = new Date().toLocaleDateString(undefined, options);
