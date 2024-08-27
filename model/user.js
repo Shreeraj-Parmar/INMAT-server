@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
     authEmail: {
       type: String,
-      unique: true,
+      
     },
     address: {
       type: String,
