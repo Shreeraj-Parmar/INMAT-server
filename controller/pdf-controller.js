@@ -518,8 +518,8 @@ export const generatePDF = async (req, res) => {
     await browser.close();
 
    
-
-    res.send(pdfBuffer);
+    console.log("hii i am above res.end buffer");
+    res.status(200).send(pdfBuffer);
     
   } catch (error) {
     console.log("error while generating print PDF & error is : ", error.message);
@@ -1055,7 +1055,8 @@ export const generateOnePDF = async (req, res) => {
 
     await browser.close();
 
-    res.send(pdfBuffer);
+   console.log("hii i am above res.end buffer");
+    res.status(200).send(pdfBuffer);
   } catch (error) {
     console.log("error while generating One PDF & error is : ", error.message);
      res.status(500).json({
@@ -1217,7 +1218,8 @@ export const generateAllPDF = async (req, res) => {
 
  
 
-    res.send(pdfBuffer);
+    console.log("hii i am above res.end buffer");
+    res.status(200).send(pdfBuffer);
   } catch (error) {
     console.log("error while generating All PDF & error is : ", error.message);
     res.status(500).json({ message: error.message });
