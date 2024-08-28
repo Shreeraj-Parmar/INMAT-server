@@ -525,7 +525,7 @@ export const generatePDF = async (req, res) => {
     res.send(pdfBuffer);
     res.status(200).json({ message: "pdf downloaded" });
   } catch (error) {
-    console.log("error while generating PDF & error is : ", error.message);
+    console.log("error while generating print PDF & error is : ", error.message);
   }
 };
 export const generateOnePDF = async (req, res) => {
@@ -1049,11 +1049,6 @@ export const generateOnePDF = async (req, res) => {
 
     await browser.close();
 
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=invoice.pdf",
-    });
-
     res.send(pdfBuffer);
   } catch (error) {
     console.log("error while generating One PDF & error is : ", error.message);
@@ -1209,10 +1204,7 @@ export const generateAllPDF = async (req, res) => {
 
     await browser.close();
 
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=AllInvoice.pdf",
-    });
+ 
 
     res.send(pdfBuffer);
   } catch (error) {
