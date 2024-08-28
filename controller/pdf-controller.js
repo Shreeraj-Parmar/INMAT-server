@@ -19,7 +19,13 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch({
-      executablePath: "/path/to/Chrome",
+      args:[
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath: "/usr/bin/google-chrome-stable",
     });
 
     console.log(browser);
@@ -548,7 +554,13 @@ export const generateOnePDF = async (req, res) => {
     }, 0);
 
     const browser = await puppeteer.launch({
-      executablePath: "/path/to/Chrome",
+      args:[
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath: "/usr/bin/google-chrome-stable",
     });
 
     const page = await browser.newPage();
@@ -1055,7 +1067,13 @@ export const generateAllPDF = async (req, res) => {
   console.log("Username:", username);
   try {
     const browser = await puppeteer.launch({
-      executablePath: "/path/to/Chrome",
+      args:[
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath: "/usr/bin/google-chrome-stable",
     });
 
     const page = await browser.newPage();
