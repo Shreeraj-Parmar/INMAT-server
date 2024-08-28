@@ -19,9 +19,8 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch({
-   // Omit executablePath to use Puppeteer's bundled Chromium
-  headless: true,
-});
+      executablePath: "/path/to/Chrome",
+    });
 
     console.log(browser);
     const page = await browser.newPage();
@@ -548,10 +547,9 @@ export const generateOnePDF = async (req, res) => {
       return acc + parseFloat(item.amount);
     }, 0);
 
-       const browser = await puppeteer.launch({
- 
-  headless: true,
-});
+    const browser = await puppeteer.launch({
+      executablePath: "/path/to/Chrome",
+    });
 
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -1056,10 +1054,9 @@ export const generateAllPDF = async (req, res) => {
   console.log("Invoices:", invoices); // Log the invoices array
   console.log("Username:", username);
   try {
-       const browser = await puppeteer.launch({
-  
-  headless: true,
-});
+    const browser = await puppeteer.launch({
+      executablePath: "/path/to/Chrome",
+    });
 
     const page = await browser.newPage();
     const options = { year: "numeric", month: "long", day: "numeric" };
