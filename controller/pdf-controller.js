@@ -520,20 +520,21 @@ export const generatePDF = async (req, res) => {
    
 
     res.send(pdfBuffer);
-    res.status(200).json({ message: "pdf downloaded" });
+    
   } catch (error) {
     console.log("error while generating print PDF & error is : ", error.message);
      res.status(500).json({ message: error.message });
   }
 };
 export const generateOnePDF = async (req, res) => {
+  const { id, classChe } = req.body;
     console.log(
     "initialtin download one pdf....& id & class is : ",
     id,
     "class is",
     classChe
   );
-  const { id, classChe } = req.body;
+  
 
   try {
     let invoice = await Invoice.findById(id);
@@ -1057,7 +1058,7 @@ export const generateOnePDF = async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.log("error while generating One PDF & error is : ", error.message);
-     res.status(201).json({
+     res.status(500).json({
       message: "error ocure in downloading one pdf",
       error: error.message,
     });
@@ -1068,8 +1069,8 @@ export const generateAllPDF = async (req, res) => {
     console.log("initialtin download All pdf....& id & class is : ");
   const { invoices, username } = req.body;
   console.log("Received body:", req.body); // Log the entire body
-  console.log("Invoices:", invoices); // Log the invoices array
-  console.log("Username:", username);
+  console.log("Invoices is :", invoices); // Log the invoices array
+  console.log("Username is the:", username);
   try {
     const browser = await puppeteer.launch({
       args:[
