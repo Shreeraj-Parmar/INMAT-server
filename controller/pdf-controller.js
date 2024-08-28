@@ -517,23 +517,28 @@ export const generatePDF = async (req, res) => {
 
     await browser.close();
 
-    res.set({
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=invoice.pdf",
-    });
+   
 
     res.send(pdfBuffer);
     res.status(200).json({ message: "pdf downloaded" });
   } catch (error) {
     console.log("error while generating print PDF & error is : ", error.message);
+     res.status(500).json({ message: error.message });
   }
 };
 export const generateOnePDF = async (req, res) => {
+    console.log(
+    "initialtin download one pdf....& id & class is : ",
+    id,
+    "class is",
+    classChe
+  );
   const { id, classChe } = req.body;
 
   try {
     let invoice = await Invoice.findById(id);
-    console.log(invoice);
+    console.log("stp 2 : init invoice downloadd one & invoice is:", invoice);
+    
     const {
       user,
       company,
@@ -1052,10 +1057,15 @@ export const generateOnePDF = async (req, res) => {
     res.send(pdfBuffer);
   } catch (error) {
     console.log("error while generating One PDF & error is : ", error.message);
+     res.status(201).json({
+      message: "error ocure in downloading one pdf",
+      error: error.message,
+    });
   }
 };
 
 export const generateAllPDF = async (req, res) => {
+    console.log("initialtin download All pdf....& id & class is : ");
   const { invoices, username } = req.body;
   console.log("Received body:", req.body); // Log the entire body
   console.log("Invoices:", invoices); // Log the invoices array
