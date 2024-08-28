@@ -42,8 +42,8 @@ router.post("/login", loginUser);
 router.post("/invoice/save", jwtMiddle, saveInvoice);
 router.post("/userInfo", jwtMiddle, getData);
 router.post("/download-pdf", jwtMiddle, generatePDF);
-router.post("/download-all-pdf", jwtMiddle, generateAllPDF);
-router.post("/download-one-pdf", jwtMiddle, generateOnePDF);
+router.post("/download-all-pdf",  generateAllPDF);
+router.post("/download-one-pdf",  generateOnePDF);
 
 router.post("/mail-verify", jwtMiddle, digitVerify);
 router.post("/mail-add", jwtMiddle, addMail);
