@@ -19,7 +19,7 @@ export const generatePDF = async (req, res) => {
   let { subTotal, discount, classChe } = req.body;
   try {
     const browser = await puppeteer.launch({
-  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+   // Omit executablePath to use Puppeteer's bundled Chromium
   headless: true,
 });
 
@@ -549,7 +549,7 @@ export const generateOnePDF = async (req, res) => {
     }, 0);
 
        const browser = await puppeteer.launch({
-  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+ 
   headless: true,
 });
 
@@ -1057,7 +1057,7 @@ export const generateAllPDF = async (req, res) => {
   console.log("Username:", username);
   try {
        const browser = await puppeteer.launch({
-  executablePath: '/usr/local/bin/chromium',  // Omit executablePath to use Puppeteer's bundled Chromium
+  
   headless: true,
 });
 
