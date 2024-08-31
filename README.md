@@ -115,6 +115,65 @@ Logging pdfBuffer will show the raw binary data of the PDF file in a hexadecimal
 
     The html field in the sendMail method allows you to define the email body in HTML, making it possible to style the email and include things like images,           links, and custom formatting.
     In your code, you've created a styled HTML email body that includes a 6-digit verification code.
+
+# JWT
+  JWT (JSON Web Token) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is digitally signed, ensuring the integrity and authenticity of the token. JWT is commonly used for authentication and authorization in web applications.
+
+- How JWT Works:
+  
+    - Structure of JWT:
+
+    A JWT consists of three parts, separated by dots (.):
+       - Header: Contains metadata about the token, including the type of token (JWT) and the signing algorithm used (e.g., HMAC, RSA).
+       - Payload: Contains the claims, which are statements about an entity (typically, the user) and additional data. For example, the payload might include the           user's ID, roles, and other relevant information.
+      -  Signature: This is used to verify that the sender of the JWT is who it says it is and to ensure that the message wasn't changed along the way. The                 signature is created by taking the encoded header, the encoded payload, a secret key, and the algorithm specified in the header, and then hashing them             together.
+  - Signing the JWT:
+
+    The server generates a JWT when a user logs in or when a token needs to be refreshed. The server uses a secret key (or private key in the case of asymmetric algorithms) to sign the JWT.
+
+    The jwt.sign() method creates the token
+    
+        const accessToken = jwt.sign({ user: user._id }, process.env.JWT_SECRET, {
+          expiresIn: "10m", // Adjust expiration as needed
+        });
+  - Verifying the JWT:
+
+    When the client sends the JWT back to the server (usually in the Authorization header), the server verifies the token's signature to ensure it hasn't been tampered with. This is done using the same secret key used to sign the token.
+    
+    The jwt.verify() method is typically used to verify the token
+
+          jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+              if (err) {
+                // Token is invalid or expired
+              } else {
+                // Token is valid, and `decoded` contains the payload
+              }
+          });
+  - Payload (Claims):
+
+    The payload can contain standard claims and custom claims.
+    Standard claims: Issuer (iss), Subject (sub), Audience (aud), Expiration (exp), etc.
+    Custom claims: Any other data relevant to your application, such as userId, role, etc.
+    Example payload:
+    
+            {
+              "userId": "1234567890",
+              "role": "admin",
+              "iat": 1516239022
+            }
+  -  Expiration and Refresh Tokens:
+
+      -  Access Token: Short-lived, used for authentication. In your code, it's set to expire in 10 minutes.
+      -  Refresh Token: Longer-lived, used to obtain a new access token when the current one expires. In your code, it's set to expire in 7 days.
+                        Storing refresh tokens securely is crucial because if compromised, they can be used to generate new access tokens.
+  - Using JWTs in a Web Application:
+
+    - Login: User provides credentials, server authenticates the user, and a JWT is created and sent to the client.
+    - Authenticated Requests: Client includes the JWT in the Authorization header for each request that requires authentication.
+    - Token Expiration: When the access token expires, the client can use the refresh token to get a new access token without requiring the user to log in again.
+
+
+
   
 
 
